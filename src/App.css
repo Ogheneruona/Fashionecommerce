@@ -7,3 +7,8 @@ a {
 	text-decoration: none;
 	color: black;
 }
+
+/*this universal selector below enables us to make every element have a universal box-sizing to be border box*/
+* {
+	box-sizing: border-box;
+}
