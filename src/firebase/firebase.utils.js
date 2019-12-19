@@ -14,6 +14,33 @@ const config = {
   };
 
 
+  //Async Api request
+  export const createUserProfileDocument = async (userAuth, addingtionalData) => {
+    //if userAuth is not false or does not exist, return nothing.
+    if (!userAuth) return;
+
+   const userRef = firestore.doc(`users/${userAuth.uid}`);
+   //snapShot enables us figure out wether or no there is data in or string interpolation.
+   const snapShot = await userRef.get();
+   if(!snapShop.exists) {
+     const { displayName, email } = userAuth;
+     const constAt = new Date();
+    /*check if there is a user in the database, and if not,
+    create a new user using data from the string interpolation.*/
+     try {
+      await userRef.set({
+        displayName,
+        email,
+        createdAt,
+        ...additionalData
+      })
+     }  catch (error) {
+        console.log('error creating user', error.meddage);
+     }
+   }
+
+  return userRef;
+
 firebase.initializeApp(config);
 
 export const auth = firebase.auth();
