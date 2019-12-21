@@ -15,7 +15,7 @@ class SignUp extends React.Component {
             email: '',
             password: '',
             confirmPassword: '',
-        }
+        };
     }
 
     handleSumit = async event => {
@@ -25,15 +25,14 @@ class SignUp extends React.Component {
 
         if(password !== confirmPassword)
             alert("passwords don't match")
-            return
+            return;
         }
 
         try {
-            const { user } = await auth.createUserWithEmailAndPasswprd(
+            const { user } = await auth.createUserWithEmailAndPassword(
                 email, 
                 password
             );
-        };
 
             await createUserProfileDocument(user, { displayName });
         
@@ -41,21 +40,22 @@ class SignUp extends React.Component {
                 displayName: '',
                 email: '',
                 password: '',
-                confirmPassword: '',
+                confirmPassword: ''
             });
-        } catch (error) {
-          console.error(error)
+        } 
+        catch (error) {
+          console.error(error);
         }
     };
 
     handleChange = event => {
         const { name, value } = event.target;
 
-        this.setState({[name]: value});
-    }
+        this.setState({ [name]: value });
+    };
 
     render() {
-        const {displayName, email, password, confirmPassword } = this.state;
+        const { displayName, email, password, confirmPassword } = this.state;
         return (
             <div className='sign-up'>
                 <h2 className='title'>I do nothave a account</h2>
@@ -93,10 +93,11 @@ class SignUp extends React.Component {
                     label='Confirm Password'
                     required
                     />
-                    <CustomButton type='submit'/>SIGN UP</CustomButton>
+                    <div className='buttons'>
+                        <CustomButton type='submit'> Sign Up </CustomButton>
+                    </div>
                 </form>
-            </div>
-    
+            </div> 
         )
     }
 }
