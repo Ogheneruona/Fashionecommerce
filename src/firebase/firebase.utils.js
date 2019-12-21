@@ -19,14 +19,19 @@ const config = {
     //if userAuth is not false or does not exist, return nothing.
     if (!userAuth) return;
 
+   /*userAuth.uid enables us get back the location, the id and the snapshot
+   and using that snapshot we are going to figure out whether or not there is 
+   data there*/
    const userRef = firestore.doc(`users/${userAuth.uid}`);
-   //snapShot enables us figure out wether or no there is data in or string interpolation.
+   /**/
    const snapShot = await userRef.get();
    if(!snapShop.exists) {
      const { displayName, email } = userAuth;
      const constAt = new Date();
     /*check if there is a user in the database, and if not,
-    create a new user using data from the string interpolation.*/
+    create a new user using data from the string interpolation.
+    what we want is the display name and email from our userAuth.
+    we also want to know thetime we made the object using new Date()*/
      try {
       await userRef.set({
         displayName,
