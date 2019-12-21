@@ -25,8 +25,7 @@ class App extends React.Component {
         //userRef enables us know whether our database has updated with any new data.
      
         userRef.onSnapshot(snapShot => {
-          this.setState(
-            {
+          this.setState({
               currentUser: {
                 id: snapShot.id,
                 ...snapShot.data()
