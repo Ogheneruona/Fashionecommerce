@@ -25,6 +25,7 @@ const config = {
    const userRef = firestore.doc(`users/${userAuth.uid}`);
    /**/
    const snapShot = await userRef.get();
+ 
    if(!snapShop.exists) {
      const { displayName, email } = userAuth;
      const constAt = new Date();
