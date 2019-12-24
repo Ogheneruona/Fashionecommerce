@@ -1,5 +1,6 @@
 export const setCurrentUser = User => ({
     type: 'SET_CURRENT_USER',
-    //we use capital and underscores in other for the strings to never change.
+    //type tells us what type of action.
     payload: user
+    //can be anything.
 });
