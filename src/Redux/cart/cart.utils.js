@@ -13,3 +13,5 @@ export const addItemToCart = (cartItems, cartItemToAdd) => {
 
     return [...cartItems, { ...cartItemToAdd, quanity: 1 }];
 };
+
+//.utils.js groups items
