@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+const OptionContainerStyles = CSS`
+    padding: 10px 15px;
+    cursor: pointer;
+`;
+
 export const HeaderContainer = styled.div`
     height: 70px;
     width: 100%;
@@ -27,19 +32,22 @@ export const LogoContainer = styled(Link)`
 `;
 
 export const OptionsContainer = styled.div`
-        width: 50%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 
-        @media screen and (max-width: 800px) {
-            width: 80%;
-        }
+    @media screen and (max-width: 800px) {
+        width: 80%;
+    }
 `;
 
 export const OptionLink = styled(Link)`
-        padding: 10px 15px;
-        cursor: pointer;
+    ${OptionContainerStyles}
+`;
+
+export const OptionDiv = styled.div`
+    ${OptionContainerStyles }
 `;
   
