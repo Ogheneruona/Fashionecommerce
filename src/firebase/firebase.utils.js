@@ -17,15 +17,18 @@ const config = {
   //Async Api request
   export const createUserProfileDocument = async (userAuth, additionalData) => {
     //if userAuth is not false or does not exist, return nothing.
-    if (!userAuth) return;
+
 
     /*userAuth.uid enables us get back the location, the id and the snapshot
     and using that snapshot we are going to figure out whether or not there is 
     data there*/
     const userRef = firestore.doc(`users/${userAuth.uid}`);
-    /**/
-    const snapShot = await userRef.get();
   
+
+    const snapShot = await userRef.get();
+    const collectionSnapshot = await collectionRef.get();
+
+
     if(!snapShot.exists) {
      const { displayName, email } = userAuth;
      const createdAt = new Date();
@@ -44,8 +47,20 @@ const config = {
         console.log('error creating user', error.message);
      }
    }
-
   return userRef;
+};
+
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+  const collectionRef = firestore.collection(collectionKey);
+
+  const batch = firestore.batch();
+  objectsToAdd.forEach(obj => {
+    const newDocRef = collectionRef.doc();
+    batch.set(_newDocRef, obj ); 
+  });
+
+  return await batch.commit();
+  //fires offour batch request and returns us a promise
 };
 
 firebase.initializeApp(config);
